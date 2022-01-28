@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- slick套件Start -->
+    <!-- Add the slick-theme.css if you want default styling -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"
+    />
+    <!-- Add the slick-theme.css if you want default styling -->
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"
+    />
+    <!-- slick套件End -->
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      defer
+      src="https://use.fontawesome.com/releases/v5.0.0/js/all.js"
+    ></script>
+
+    <!-- swiper css -->
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper@7/swiper-bundle.min.css"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Taiwan島遊</title>
+    <link
+      rel="Shortcut Icon"
+      type="image/x-icon"
+      class="icon"
+      href="image/TW_smallest.svg"
+    />
+  </head>
+  <body>
+    <div class="wrap">
+      <div class="header">
+        <a href="index.html">
+          <div class="logos">
+            <img class="TW_logo" src="image/TW_logo.svg" alt="" />
+            <div class="words_logo">
+              <div class="Taiwan">Taiwan</div>
+              <div class="js-word_LOGO TW_travel_day">島遊</div>
+            </div>
+          </div>
+        </a>
+        <div class="nav_menu">
+          <a class="nav_link_day" href="scenicSpots.html">旅遊景點</a>
+          <a class="nav_link_day" href="restaurants.html">美食餐廳</a>
+        </div>
+
+        <div class="searchDiv">
+          <input id="searchBox" type="text" placeholder="想去哪裡玩 ?" />
+          <img src="image/magnifier.svg" class="magnifier" alt="" />
+        </div>
+
+        <div class="header-right">
+          <div class="switch_color">
+            <img class="sun" src="image/sun.svg" alt="" />
+            <div class="sliderBtn">
+              <img class="js-sliderBar" src="image/Rectangle.svg" alt="" />
+              <img class="slider_day" src="image/Ellipse.svg" alt="" />
+            </div>
+            <img class="moon" src="image/moon.svg" alt="" />
+          </div>
+          <div class="language"></div>
+        </div>
+      </div>
+
+      <!-- swiper輪播Start -->
+      <div class="swiper_container">
+        <div class="swiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <a
+                href="scenicSpotInfo.html?id=C1_382000000A_109990&city=NewTaipei"
+              >
+                <img src="image/Jiufan.jpg" alt="九份老街" />
+                <div class="swiper-slide-title">九份老街</div>
+              </a>
+            </div>
+            <div class="swiper-slide">
+              <a
+                href="scenicSpotInfo.html?id=C1_315080600H_000005&city=PenghuCounty"
+              >
+                <img src="image/PenghuCounty.jpg" alt="員貝嶼" />
+                <div class="swiper-slide-title">員貝嶼</div>
+              </a>
+            </div>
+            <div class="swiper-slide">
+              <a href="scenicSpotInfo.html?id=C1_315081600H_000067&city=Tainan">
+                <img src="image/Tainan.jpg" alt="鹿耳門天后宮" />s
+                <div class="swiper-slide-title">鹿耳門天后宮</div>
+              </a>
+            </div>
+
+            <div class="swiper-slide">
+              <a
+                href="scenicSpotInfo.html?id=C1_315080500H_000012&city=HualienCounty"
+              >
+                <img src="image/haulian.jpg" alt="石梯坪" />
+                <div class="swiper-slide-title">石梯坪</div>
+              </a>
+            </div>
+            <div class="swiper-slide">
+              <a href="scenicSpotInfo.html?id=C1_379000000A_000217&city=Taipei">
+                <img src="image/101.jpg" alt="台北101" />
+                <div class="swiper-slide-title">台北101</div>
+              </a>
+            </div>
+            <div class="swiper-slide">
+              <a
+                href="scenicSpotInfo.html?id=C1_397000000A_000230&city=Kaohsiung"
+              >
+                <img src="image/Kaohsiung.jpg" alt="田寮月世界" />
+                <div class="swiper-slide-title">田寮月世界</div>
+              </a>
+            </div>
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+      </div>
+      <!-- swiper輪播End -->
+
+      <div class="main_container">
+        <div class="topic_section">
+          <h2 class="topicTitle">地方特色</h2>
+
+          <!-- <div class="topic_link">
+            <a href="">熱鬧繁華</a>
+            <a href="">與自然共舞</a>
+            <a href="">純樸人情味</a>
+            <a href="">南島奔放</a>
+          </div> -->
+
+          <div class="topicPic_section">
+            <div class="topicPic">
+              <a class="hoverCover" href="scenicSpots.html?id=Taipei">
+                <h2 class="topic_subtitle">台北</h2>
+              </a>
+              <img class="" src="image/Taipei_scene.jpg" alt="Taiepi 101" />
+            </div>
+            <div class="topicPic">
+              <a class="hoverCover" href="scenicSpots.html?id=NewTaipei">
+                <h2 class="topic_subtitle">新北</h2>
+              </a>
+              <img
+                class="obj-pos-top"
+                src="image/NewTaipei_scene.jpg"
+                alt="野柳女王頭"
+              />
+            </div>
+            <div class="topicPic">
+              <a class="hoverCover" href="scenicSpots.html?id=Taoyuan">
+                <h2 class="topic_subtitle">桃園</h2>
+              </a>
+              <img src="image/Taoyuan_scene.jpg" alt="奧爾森林學院" />
+            </div>
+            <div class="topicPic">
+              <a class="hoverCover" href="scenicSpots.html?id=Taichung">
+                <h2 class="topic_subtitle">台中</h2>
+              </a>
+              <img src="image/Taichung_scene.jpg" alt="台中國家歌劇院" />
+            </div>
+            <div class="topicPic">
+              <a class="hoverCover" href="scenicSpots.html?id=Tainan">
+                <h2 class="topic_subtitle">台南</h2>
+              </a>
+              <img src="image/Tainan_scene.jpg" alt="台南孔廟" />
+            </div>
+            <div class="topicPic">
+              <a class="hoverCover" href="scenicSpots.html?id=Kaohsiung">
+                <h2 class="topic_subtitle">高雄</h2>
+              </a>
+              <img src="image/Kaohsiung_scene.jpg" alt="高雄港" />
+            </div>
+          </div>
+        </div>
+
+        <div class="sceneSpot_section">
+          <h2 class="topicTitle">熱門景點</h2>
+
+          <div class="sceneSpotPic_section"></div>
+        </div>
+
+        <div class="popFood_section">
+          <h2 class="topicTitle">人氣美食</h2>
+
+          <div class="popFoodPic_section"></div>
+        </div>
+
+        <div class="subscribeBox">
+          <p for="email" class="subscribeTitle">
+            訂閱我們，獲得最在地的旅遊資訊！
+          </p>
+          <p class="secondLine">每週六一封，不隨意打擾，且隨時可以取消</p>
+          <div class="email_subscribe">
+            <input type="email" id="email" placeholder="輸入你的 Email" />
+            <input type="button" id="subscribe" value="訂閱" />
+          </div>
+        </div>
+      </div>
+
+      <div class="footer">
+        <div class="footer-top">
+          <div class="logos">
+            <img class="TW_logo_footer" src="image/TW_white.svg" alt="" />
+            <div class="words_logo_footer">
+              <div class="Taiwan_footer">Taiwan</div>
+              <div class="TW_travel_footer">島遊</div>
+            </div>
+          </div>
+          <div class="website_info">
+            <div class="aboutUs">
+              <h5>關於 Taiwan 島遊</h5>
+              <a href="">我們是誰</a>
+              <a href="">加入我們</a>
+              <a href="">聯繫我們</a>
+            </div>
+            <div class="serviceTerms">
+              <h5>服務條款</h5>
+              <a href="">隱私權政策</a>
+              <a href="">FAQ</a>
+            </div>
+            <div class="followUs">
+              <h5>追蹤我們</h5>
+              <a href="">
+                <img src="image/facebook.svg" alt="" />
+                Facebook</a
+              >
+              <a href=""><img src="image/instagram.svg" alt="" /> Instagram</a>
+              <a href=""><img src="image/line.svg" alt="" /> Line</a>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <img src="image/cc.svg" alt="" />
+          <span>UI Design by Zoe Kang </span>
+          /
+          <a class="link" href="https://github.com/Yashien-Lin"
+            ><i class="fab fa-github"></i>Made by Yashien Lin</a
+          >
+        </div>
+      </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsSHA/3.2.0/sha.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!-- slick套件Start -->
+    <script
+      type="text/javascript"
+      src="//code.jquery.com/jquery-1.11.0.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="//code.jquery.com/jquery-migrate-1.2.1.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"
+    ></script>
+    <!-- slick套件End -->
+    <!-- swiper js -->
+    <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
+
+    <script src="js/all.js"></script>
+    <script src="js/index.js"></script>
+  </body>
+</html>

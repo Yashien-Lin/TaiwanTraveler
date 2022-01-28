@@ -1,0 +1,236 @@
+.container-nav {
+  margin: 20px 0;
+}
+
+.container-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 25px 0;
+}
+
+.container-body {
+  display: flex;
+  margin-bottom: 25px;
+}
+
+.topicTitle {
+  margin: 0;
+  text-align: left;
+}
+
+#map {
+  width: 50%;
+}
+
+.itemInfo_section {
+  width: 50%;
+  height: calc(
+    100vh - 233px
+  ); /*減掉.container-body的margin-top/container-body + header的高度*/
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  background: #ffffff;
+  gap: 20px;
+  /* border: 8px solid #9086cc; */
+  overflow: auto;
+  padding: 10px;
+  background-color: transparent;
+}
+
+.sceneSpotCard {
+  height: 280px;
+  width: 210px;
+  background-color: #fff;
+  overflow: hidden;
+  box-shadow: 1px 1px 3px lightgrey;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all ease 0.3s;
+}
+
+.img_div,
+.sceneImg {
+  height: 190px;
+}
+
+.sceneSpotCard_body {
+  height: 90px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 9px;
+  align-items: flex-start;
+  height: calc(100% - 190px); /*減掉圖片高度*/
+  padding: 14px 20px;
+}
+
+.sceneSpotCard:hover {
+  background-color: #392a93;
+  box-shadow: 0 0 0.1rem 0.35rem rgb(108 93 250 / 50%);
+}
+
+/* .sceneSpotCard:focus {
+  box-shadow: 0 0 0 0.35rem rgb(108 93 250 / 50%);
+} */
+
+.sceneSpotCard:hover .sceneName {
+  color: #ffffff;
+}
+
+.numIcon {
+  width: 36px;
+  height: 36px;
+  background: #392a93;
+  color: #ffffff;
+  border-radius: 50px;
+  padding: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bolder;
+}
+
+.sceneSpotCard:hover .numIcon {
+  background: #ffffff;
+  color: #392a93;
+}
+
+@media (min-width: 1400px) {
+  .container {
+    max-width: 80%;
+  }
+}
+
+/* Demonstrate a "mostly customized" scrollbar
+   * (won't be visible otherwise if width/height is specified) */
+.itemInfo_section::-webkit-scrollbar {
+  width: 5px;
+  height: 8px;
+  background-color: #aaa; /* or add it to the track */
+}
+/* Add a thumb */
+.itemInfo_section::-webkit-scrollbar-thumb {
+  background: #392a93;
+}
+
+/* 導覽列樣式 */
+.breadcrumb {
+  color: #9086cc;
+  font-weight: bold;
+  margin: 0;
+}
+
+.breadcrumb-item a:hover {
+  color: #392a93;
+  text-decoration: underline;
+  text-shadow: 2px 3px 2px #a6a3a3;
+}
+
+.breadcrumb-item.active {
+  color: #a9d3ff;
+}
+
+/* 下拉選單樣式 */
+.btn-secondary {
+  background: #ffffff;
+  font-weight: bold;
+  min-width: 140px;
+}
+
+.btn-secondary:hover {
+  background-color: #9086cc;
+}
+.btn-secondary:focus {
+  background-color: #392a93;
+}
+
+.dropdownLists {
+  display: flex;
+  gap: 30px;
+}
+
+.dropdown-menu {
+  min-width: 140px;
+}
+
+.itemList {
+  text-align: left;
+}
+.itemList.dropdown-toggle::after {
+  margin-left: 68px;
+}
+
+/* End */
+
+/* 下拉選單樣式 */
+.dropdownCity {
+  font-weight: bold;
+  min-width: 140px;
+  color: #392a93;
+  border-color: #392a93;
+  background-color: #ffffff;
+}
+
+.dropdownCity:hover {
+  /* background-color: #9086cc; */
+  background-color: #5343b4;
+  color: #ffffff;
+  cursor: pointer;
+}
+/* .dropdownCity:focus {
+  background-color: #392a93;
+} */
+.dropdownCity:focus option {
+  background-color: #ffffff;
+  color: #392a93;
+}
+
+.dropdownCity:focus option:checked {
+  background-color: #9086cc;
+  color: #ffffff;
+}
+
+/* .dropdownCity option:hover {
+  cursor: pointer;
+  background-color: #9086cc !important;
+  color: #ffffff;
+} */
+
+option:hover {
+  background-color: yellow;
+}
+
+/* map Icon */
+.myIcon {
+  width: 36px;
+  height: 36px;
+  background: #392a93;
+  color: #ffffff;
+  border-radius: 50px;
+  padding: 18px;
+}
+.myIcon:hover {
+  background: #fefefe;
+  border: 3px solid #392a93;
+  color: #392a93;
+  font-weight: bold;
+}
+
+.iconHover {
+  background: #fefefe;
+  border: 3px solid #392a93;
+  color: #392a93;
+  font-weight: bold;
+}
+
+.iconNum {
+  font-size: 16px;
+  height: 100%;
+  /* color: #ffffff; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}

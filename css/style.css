@@ -1,0 +1,766 @@
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: "";
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* start */
+@import url(//fonts.googleapis.com/earlyaccess/notosanstc.css);
+body {
+  font-family: "Noto Sans TC", "微軟正黑體", sans-serif;
+  color: #392a93;
+}
+
+a,
+a:hover,
+a:visited,
+a:link,
+a:active {
+  color: inherit;
+  text-decoration: none;
+  outline: none;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 100px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 0 50px;
+}
+
+.logos {
+  display: flex;
+}
+
+.TW_travel_day {
+  font-family: Noto Sans TC;
+  font-size: 1.25rem;
+  color: #392a93;
+  margin-top: 6px;
+  font-weight: bold;
+}
+
+.TW_travel_night {
+  font-family: Noto Sans TC;
+  font-size: 1.25rem;
+  color: #9086cc;
+  margin-top: 6px;
+  font-weight: bold;
+}
+
+.Taiwan {
+  font-family: sans-serif;
+  color: #9086cc;
+  font-size: 9px;
+}
+
+.TW_logo {
+  width: 25px;
+}
+
+.words_logo {
+  margin: 6px 0 0 10px;
+}
+
+.nav_link_day {
+  text-decoration: none;
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #392a93;
+}
+
+.nav_link_night {
+  text-decoration: none;
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: #9086cc;
+}
+
+.nav_menu {
+  display: flex;
+  gap: 5rem;
+}
+.nav_menu a:hover {
+  text-shadow: 3px 3px 2px #a6a3a3;
+}
+
+#searchBox {
+  border-radius: 16px;
+  color: #9086cc;
+  border: 1px solid #9086cc;
+  margin-right: 20px;
+  padding: 11.5px 20px;
+}
+
+::placeholder {
+  /* CSS 3 標準 */
+
+  color: #9086cc;
+}
+
+::-webkit-input-placeholder {
+  /* Chrome, Safari */
+
+  color: #9086cc;
+}
+
+.magnifier {
+  cursor: pointer;
+}
+
+.searchDiv {
+  display: flex;
+  align-items: center;
+}
+
+.header-right {
+  display: flex;
+}
+
+.sliderBtn {
+  position: relative;
+  margin: 0 8px;
+}
+
+.slider_day {
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  transition: all 0.3s ease 0s;
+}
+
+.slider_night {
+  position: absolute;
+  left: 2px;
+  top: 2px;
+  transform: translateX(18px);
+  transition: all 0.3s ease 0s;
+}
+
+.black_page {
+  background-color: #1d1d1d;
+  color: #9086cc !important;
+}
+
+.white_page {
+  background-color: #ffffff;
+}
+
+.switch_color {
+  display: flex;
+  cursor: pointer;
+}
+
+/* 輪播區 */
+.mainPic {
+  width: 1050px !important;
+  height: 546px;
+  object-fit: cover;
+  border-radius: 56px;
+  margin: auto;
+}
+
+.carousel_Div {
+  margin: 40px 0;
+}
+
+.main_container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* 主題連結 */
+.topic_link {
+  margin: 96px 0 63px;
+  color: #392a93;
+  font-size: 1.625rem;
+  gap: 5rem;
+  display: flex;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.topicPic_section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+}
+
+.topicPic_section img {
+  height: 180px;
+  width: 293px;
+  border-radius: 20px;
+  object-fit: cover;
+}
+
+.topicPic_section img:hover {
+  transform: scale(1.15);
+  cursor: pointer;
+}
+
+.topicPic {
+  height: 180px;
+  width: 293px;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+}
+
+.topicPic:hover {
+  box-shadow: 0 0 0.1rem 0.35rem rgb(108 93 250 / 70%);
+}
+
+.obj-pos-top {
+  object-position: top;
+}
+
+.topic_subtitle {
+  font-size: 1.25rem;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+/* 熱門景點 */
+.topicTitle {
+  font-size: 1.625rem;
+  margin: 100px 0 60px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.scene_sliderBtn {
+  text-align: right;
+  margin-bottom: 20px;
+}
+
+.scene_sliderBtn img:hover {
+  cursor: pointer;
+}
+
+.lastPage {
+  margin-right: 5px;
+}
+
+.sceneSpotPic_section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 20px;
+  justify-content: center;
+}
+
+.sceneSpotPic {
+  height: 303px;
+  width: 285px;
+  /* max-width: 285px; */
+  overflow: hidden;
+  /* border: 1px solid #c7c0c0; */
+  box-shadow: 1px 1px 3px lightgrey;
+  /* box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.05); */
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all ease 0.3s;
+}
+
+.sceneSpotPic:hover {
+  background-color: #fa7e5f;
+  box-shadow: 0 0 0.1rem 0.35rem rgb(108 93 250 / 70%);
+}
+
+.sceneImg {
+  height: 213px;
+  /* width: 285px; */
+  width: 100%;
+  object-fit: cover;
+}
+
+.img_div {
+  overflow: hidden;
+  height: 213px;
+  /* width: 285px; */
+  width: 100%;
+}
+
+.sceneImg:hover {
+  transform: scale(1.1);
+}
+
+.sceneSpotPic_body {
+  height: 90px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 9px;
+  align-items: center;
+}
+
+.sceneName {
+  color: #392a93;
+  font-weight: bold;
+}
+
+.sceneCity {
+  color: #2586eb;
+  font-weight: bold;
+}
+
+/* 人氣美食 */
+.popFoodPic_section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+}
+
+.popFoodPic_section img {
+  height: 240px;
+  width: 380px;
+  border-radius: 20px;
+  object-fit: cover;
+}
+
+.hoverCover {
+  background-color: rgb(0, 0, 0, 0.6);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  transition: all ease 0.5s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hoverCover:hover {
+  opacity: 0;
+  cursor: pointer;
+}
+
+.foodPic {
+  height: 240px;
+  width: 380px;
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+}
+
+.foodPic:hover {
+  box-shadow: 0 0 0.1rem 0.35rem rgb(108 93 250 / 70%);
+}
+
+.food_subtitle {
+  font-size: 1.25rem;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+/* 訂閱 */
+.subscribeBox {
+  height: 221px;
+  margin: 100px auto;
+  background-color: #fa7e5f;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+}
+
+.subscribeTitle {
+  font-size: 1.625rem;
+  color: #392a93;
+  font-weight: bold;
+}
+
+.secondLine {
+  color: #ffffff;
+  margin: 20px 0;
+}
+
+#email {
+  color: #392a93;
+  border-radius: 12px;
+  height: 50px;
+  font-size: 1.25rem;
+  padding: 11.5px 20px;
+  font-family: sans-serif;
+}
+
+#subscribe {
+  background-color: #392a93;
+  color: #ffffff;
+  border-radius: 12px;
+  height: 50px;
+  font-size: 1.25rem;
+}
+
+/* footer */
+.footer {
+  background: #392a93;
+  font-family: sans-serif;
+  height: 337px;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+
+.footer-top {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.TW_travel_footer {
+  font-family: Noto Sans TC;
+  font-size: 1.8rem;
+  /* color: #392a93; */
+  margin-top: 13px;
+  font-weight: bold;
+  color: #ffffff;
+}
+
+.website_info a {
+  color: #fefefe;
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.TW_logo_footer {
+  width: 51px;
+}
+
+.words_logo_footer {
+  margin: 17px 0 0 13px;
+}
+
+.Taiwan_footer {
+  color: #9086cc;
+}
+
+.aboutUs,
+.serviceTerms,
+.followUs {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.website_info {
+  display: flex;
+  gap: 78px;
+}
+
+.website_info h5 {
+  text-decoration: underline;
+}
+
+.footer-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.fa-github {
+  margin-right: 8px;
+}
+
+.link {
+  color: #ffffff !important;
+}
+
+.icon {
+  width: 16px;
+}
+
+.color_darkPage {
+  color: #9086cc;
+}
+
+.bgColor_darkPage {
+  background: #9086cc;
+}
+
+/* slick樣式-Start */
+.slick-prev,
+.slick-next {
+  width: 40px;
+  height: 40px;
+}
+
+.slick-slide {
+  margin: 10px 10px;
+}
+
+.slick-next:before {
+  content: url(image/nextPage.svg);
+}
+
+.slick-prev:before {
+  content: url(image/lastPage.svg);
+}
+
+.slick-prev,
+.slick-next {
+  top: -47px;
+}
+
+.slick-prev {
+  /* left: 1103px; */
+  left: 92%;
+}
+
+.slick-next {
+  /* right: 4px; */
+  right: 0;
+}
+
+@media (max-width: 1199px) {
+  .slick-slide {
+    margin: 10px 10px;
+  }
+  .slick-prev {
+    left: 89.5%;
+  }
+  .slick-next {
+    right: 2%;
+  }
+}
+
+@media (max-width: 1080px) {
+  .slick-prev {
+    left: 89%;
+  }
+}
+@media (max-width: 920px) {
+  .slick-prev {
+    left: 87%;
+  }
+  .slick-next {
+    right: 2%;
+  }
+}
+
+@media (max-width: 767px) {
+  .slick-slide {
+    margin: 10px 20px;
+  }
+  .slick-prev {
+    left: 85%;
+  }
+  .slick-next {
+    right: 2%;
+  }
+}
+
+@media (max-width: 480px) {
+  .slick-slide {
+    margin: 10px 20px;
+  }
+  .slick-prev {
+    left: 78%;
+  }
+  .slick-next {
+    right: 2%;
+  }
+}
+/* slick樣式-End */
+
+/* swiper樣式-Start */
+.swiper_container {
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  color: #000;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  margin-top: 40px;
+  /* height: 100%; */
+  height: 60vh;
+}
+
+.swiper {
+  width: 100%;
+  /* height: 600px; */
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+
+  /* Center slide text vertically */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+  width: 60%;
+  overflow: hidden;
+  border-radius: 30px;
+  position: relative;
+}
+
+.swiper-slide a {
+  width: 100%;
+}
+
+.swiper-slide img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.swiper-slide-title {
+  background: rgba(0, 0, 0, 0.5);
+  height: 100px;
+  width: 100%;
+  position: absolute;
+  bottom: 10%;
+  font-weight: bold;
+  font-size: 1.875rem;
+  line-height: 100px;
+  color: #fefefe;
+}
+/* swiper樣式-End */

@@ -1,0 +1,120 @@
+.sceneSpot-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 34px;
+  margin: 40px 0;
+}
+
+.scenePic {
+  /* width: 50%; */
+  max-width: 605px;
+  max-height: 402px;
+  overflow: hidden;
+  border-radius: 20px;
+}
+
+.scenePic img {
+  max-width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* max-height: 402px; */
+}
+
+.sceneCity {
+  color: #fa7e5f;
+}
+
+.sceneTags {
+  display: flex;
+  align-content: center;
+  gap: 27px;
+}
+
+.sceneTags li {
+  background: #9086cc;
+  border-radius: 12px;
+  padding: 8px;
+  color: #fefefe;
+}
+
+.sceneTitle {
+  font-size: 1.625rem;
+  color: #392a93;
+  font-weight: bold;
+}
+
+.sceneInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 50%;
+  padding: 20px 0;
+}
+
+.sceneDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.sceneDetails li:first-child {
+  display: flex;
+  align-items: flex-start;
+  line-height: 26px;
+}
+
+.sceneDetails img {
+  margin-right: 10px;
+  margin-top: 4px;
+}
+
+.sceneSpot-desc {
+  margin-bottom: 40px;
+}
+
+.sceneSpot-desc p {
+  line-height: 36px;
+  font-size: 1.125rem;
+}
+
+#map {
+  width: 100%;
+  height: 523px;
+  border-radius: 20px;
+}
+
+/* leaflets地圖css */
+.leaflet-popup .leaflet-popup-content-wrapper {
+  border-radius: 30px;
+}
+.leaflet-popup .leaflet-popup-content-wrapper .leaflet-popup-content {
+  margin: 0;
+}
+
+.leaflet-popup-content .sceneSpotPic {
+  height: 215px;
+  width: 200px;
+}
+.leaflet-popup-content .sceneSpotPic .img_div {
+  height: 132px;
+}
+.leaflet-popup-content .sceneSpotPic .sceneSpotPic_body {
+  font-size: 1rem;
+}
+
+.breadcrumb {
+  color: #9086cc;
+  font-weight: bold;
+  margin-top: 1.5rem;
+}
+
+.breadcrumb-item a:hover {
+  color: #392a93;
+  text-decoration: underline;
+  text-shadow: 2px 3px 2px #a6a3a3;
+}
+
+.breadcrumb-item.active {
+  color: #a9d3ff;
+}
