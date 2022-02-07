@@ -18,7 +18,7 @@ function getRestaurantData() {
     )
     .then((res) => {
       let restData = res.data;
-      console.log(restData); //單一景點資料
+      console.log(restData); //單一餐廳資料
       let str = "";
       restData.forEach((item) => {
         // 處理餐廳類別標籤字串
@@ -27,7 +27,7 @@ function getRestaurantData() {
         //處理圖片
         let picUrl =
           item.Picture.PictureUrl1 == undefined
-            ? `image/landscape.jpg`
+            ? `image/food_notFound2.jpg`
             : `${item.Picture.PictureUrl1}`;
 
         let picDesc =
@@ -69,7 +69,7 @@ function getRestaurantData() {
                         </li>
                         <li>
                             <img src="image/locate.svg" alt="" />
-                            <span>${item.RestaurantName}</span>
+                            <span><a href='https://www.google.com/maps/place/${lat}, ${lon}' target='_blank'>${item.Address}</a></span>
                         </li>
                           ${websiteStr}
                         </ul>
@@ -77,7 +77,7 @@ function getRestaurantData() {
                     </div>
                     <div class="sceneSpot-desc">
                       <p>
-                      ${item.DescriptionDetail}
+                      ${item.Description}
                       </p>
                     </div>
                       <div id="map"></div>
@@ -182,65 +182,6 @@ function getLocation() {
     // getNearBySceneSpot(latitude, longitude);   // 要放單一景點位置
   });
 }
-
-//取得附近景點(先關掉)
-// let nearbySceneData;
-// function getNearBySceneSpot() {
-//   const location = document.querySelector(".sceneInfo").dataset.loc;
-//   const lat = location.split(",")[0];
-//   const lon = location.split(",")[1];
-
-//   axios
-//     .get(
-//       `https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot?%24spatialFilter=nearby(${lat},${lon},3000)&%24format=JSON`,
-//       { header: GetAuthorizationHeader() }
-//     )
-//     .then((res) => {
-//       nearbySceneData = res.data;
-//       console.log(nearbySceneData);
-//       renderMap(lat, lon);
-//     })
-//     .catch((err) => console.log(err));
-// }
-
-//載入地圖(先關掉)
-// function renderMap(lat, lon) {
-//   map = L.map("map").setView([lat, lon], 14);
-//   L.tileLayer(
-//     "https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}",
-//     {
-//       attribution:
-//         'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-//       maxZoom: 18,
-//       id: "mapbox/streets-v11",
-//       tileSize: 512,
-//       zoomOffset: -1,
-//       accessToken:
-//         "pk.eyJ1IjoieWFzaGllbnh6eHoiLCJhIjoiY2t2MjlpMzBxMDFkdjJzbDdxbm8yYmM5byJ9.fN2QIK9fAfUXmdNZdv_oGA",
-//     }
-//   ).addTo(map);
-
-//   nearbySceneData.forEach((item) => {
-//     let lat = item.Position.PositionLat;
-//     let lon = item.Position.PositionLon;
-//     L.marker([lat, lon])
-
-//       .bindPopup(
-//         `<div class="sceneSpotPic" >
-//                   <a href="scenicSpotInfo.html?id=${item.ScenicSpotID}">
-//                     <div class="img_div">
-//                       <img class="sceneImg" src="${item.Picture.PictureUrl1}" alt="${item.ScenicSpotName}"/>
-//                     </div>
-//                     <div class="sceneSpotPic_body">
-//                       <h5 class="sceneName">${item.ScenicSpotName}</h5>
-//                     </div>
-//                   </a>
-//                 </div>`
-//       )
-//       .openPopup()
-//       .addTo(map);
-//   });
-// }
 
 //驗證用
 function GetAuthorizationHeader() {

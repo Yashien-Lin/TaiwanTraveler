@@ -1,4 +1,6 @@
 const sceneSpotPic = document.querySelectorAll(".sceneSpotPic");
+
+// 全台縣市 List
 const cityAll = [
   "Taipei",
   "NewTaipei",
@@ -42,11 +44,10 @@ function getSpotList() {
     })
       .then((res) => {
         let data = res.data;
-        // console.log(data);
+        console.log(data);
         data.forEach((spot) => {
           let obj = {};
-          //每個city的每個景點Data
-          // perCityPicUrl.push(spot.Picture.PictureUrl1);
+
           if (
             spot.ScenicSpotName == "屏東縣排灣族雕刻館" || //C1-00102.jpg
             spot.ScenicSpotName == "中山公園" ||
@@ -56,17 +57,15 @@ function getSpotList() {
             return;
           } else {
             obj.city = spot.City;
+            obj.EngCity = city;
             obj.id = spot.ScenicSpotID;
             obj.position = spot.Position;
             obj.ScenicSpotName = spot.ScenicSpotName;
             obj.picUrl = spot.Picture.PictureUrl1; //到這裡
-            // console.log(spot.Picture.PictureUrl1);
-            // console.log(`obj: ${obj}`); //抓每個縣市的圖
           }
           topicListAll.push(obj);
         });
-        // console.log(`picUrl: ${perCityPicUrl}`); //抓每個縣市的圖
-        // console.log(topicListAll);
+
         renderSpotList();
       })
       .catch((err) => {
@@ -79,14 +78,13 @@ function getSpotList() {
 function renderSpotList() {
   const sceneSpotPic_section = document.querySelector(".sceneSpotPic_section");
   let newStr;
-  // topicListAll = topicListAll.sort(() => Math.random() - 0.5).slice(0, 20);
+
   let city;
   topicListAll.forEach((item) => {
     if (item.picUrl != undefined && item.city != city) {
-      // let city = item.city;
-      // console.log(city);
+      console.log(item);
       let str = `<div class="sceneSpotPic" >
-                  <a href="scenicSpotInfo.html?id=${item.id}">
+                  <a href="scenicSpotInfo.html?id=${item.id}&city=${item.EngCity}">
                     <div class="img_div">
                       <img class="sceneImg" src="${item.picUrl}" alt="${item.ScenicSpotName}" onerror='imageError(event)'/>   
                     </div>
@@ -96,7 +94,6 @@ function renderSpotList() {
                     </div>
                   </a>
                 </div>`;
-      // console.log(str);
 
       newStr += str;
       city = item.city;
@@ -117,14 +114,13 @@ function imageError(e) {
     e.target.closest(".foodPic").style.display = "none";
   }
 }
-// console.log(GetAuthorizationHeader());
 
 // 滑動效果slick(): 熱門景點
 function slick() {
   $(document).ready(function () {
     $(".sceneSpotPic_section").slick({
       // dots: true,
-      // arrows: true,
+      arrows: true,
       infinite: false,
       speed: 300,
       slidesToShow: 4,
@@ -133,15 +129,6 @@ function slick() {
       autoplaySpeed: 2000,
       infinite: true,
       responsive: [
-        // {
-        //   breakpoint: 1680,
-        //   settings: {
-        //     slidesToShow: 4,
-        //     slidesToScroll: 4,
-        //     infinite: true,
-        //     // dots: true,
-        //   },
-        // },
         {
           breakpoint: 1199,
           settings: {
@@ -178,8 +165,6 @@ function slick() {
 
   $(document).ready(function () {
     $(".popFoodPic_section").slick({
-      // dots: true,
-      // arrows: true,
       infinite: false,
       speed: 300,
       slidesToShow: 4,
@@ -188,16 +173,6 @@ function slick() {
       autoplaySpeed: 2000,
       infinite: true,
       responsive: [
-        // {
-        //   breakpoint: 1680,
-        //   settings: {
-        //     slidesToShow: 4,
-        //     slidesToScroll: 4,
-        //     infinite: true,
-        //     // dots: true,
-        //   },
-        // },
-
         {
           breakpoint: 1199,
           settings: {
@@ -245,19 +220,20 @@ function getFoodList() {
     })
       .then((res) => {
         let data = res.data;
-        // console.log(data);
+        console.log(data);
         data.forEach((food) => {
           let obj = {};
           //每個city的每個景點Data
-          // perCityPicUrl.push(spot.Picture.PictureUrl1);
           obj.city = food.City;
+          obj.EngCity = city;
+          obj.id = food.RestaurantID;
           obj.RestaurantName = food.RestaurantName;
           obj.picUrl = food.Picture.PictureUrl1; //到這裡
 
           foodListAll.push(obj);
         });
 
-        // console.log(foodListAll);
+        console.log(foodListAll);
         renderFoodList();
       })
       .catch((err) => {
@@ -270,14 +246,13 @@ function getFoodList() {
 function renderFoodList() {
   const popFoodPic_section = document.querySelector(".popFoodPic_section");
   let newStr;
-  // topicListAll = topicListAll.sort(() => 0.5 - Math.random()).slice(0, 9);
   let city;
   foodListAll.forEach((item) => {
     if (item.picUrl != undefined && item.city != city) {
       let str = `<div class="foodPic">
-                  <div class="hoverCover">
+                  <a class="hoverCover" href="restaurantInfo.html?id=${item.id}&city=${item.EngCity}">
                     <h2 class="food_subtitle">${item.RestaurantName}</h2>
-                  </div>
+                  </a>
                   <img src="${item.picUrl}" alt="${item.RestaurantName}" onerror='imageError(event)'/>
                   
                 </div>`;
@@ -286,19 +261,13 @@ function renderFoodList() {
       newStr += str;
       city = item.city;
     }
-    // else if (item.picUrl == undefined) {
-    //   console.log("undefined:", item.ScenicSpotName);
-    // }
   });
-  // console.log(topicListAll);
   if (newStr.indexOf("undefined") === -1) {
     return;
   } else {
-    newStr = newStr.replace("undefined", ""); //除錯:刪掉莫名textContent:undefined
-    // console.log(newStr);
+    newStr = newStr.replace("undefined", ""); //除錯:刪掉textContent:undefined
   }
   popFoodPic_section.innerHTML = newStr;
-  // slick();
 }
 
 //驗證用

@@ -1,22 +1,18 @@
-// let selectedCity = location.href.split("=")[1];
 let selectedCity =
   location.href.split("=")[1] == undefined
     ? "Taipei"
     : location.href.split("=")[1];
 const dropdownCity = document.querySelector(".dropdownCity");
 const itemInfo_section = document.querySelector(".itemInfo_section");
+const breadcrumb = document.querySelector(".breadcrumb-item.active");
 let map;
-// console.log(selectedCity);
-
-// 選擇台北市 ->
-// 取得該縣市的前100個景點 -> rederData在右邊區塊
-//                        -> renderMap在左邊區塊
 
 function init() {
   dropdownCity.value = selectedCity;
-  getItemData();
+  breadcrumb.textContent =
+    dropdownCity.options[dropdownCity.selectedIndex].text;
 
-  // renderMap();
+  getItemData();
 }
 init();
 
@@ -39,32 +35,10 @@ function getItemData(city) {
     .catch((err) => console.log(err));
 }
 
-// 取得該縣市
-// let nearbySceneData;
-// function getNearBySceneSpot() {
-//   const location = document.querySelector(".sceneSpotCard").dataset.loc;
-//   const lat = location.split(",")[0];
-//   const lon = location.split(",")[1];
-
-//   axios
-//     .get(
-//       `https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot/${selectedCity}?%24top=600&%24format=JSON`,
-//       // `https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot/${selectedCity}?%24spatialFilter=nearby(${lat},${lon},5000)&%24format=JSON`,
-//       { header: GetAuthorizationHeader() }
-//     )
-//     .then((res) => {
-//       nearbySceneData = res.data;
-//       console.log(nearbySceneData);
-//       renderMap(lat, lon);
-//     })
-//     .catch((err) => console.log(err));
-// }
-
 // 渲染資料
 function renderItemData() {
   let str = "";
   data.forEach((item, i) => {
-    // console.log(item.Picture.PictureUrl1);
     let imgUrl;
     if (item.Picture.PictureUrl1 == undefined) {
       imgUrl = "image/food_notFound2.jpg";
@@ -89,8 +63,6 @@ function renderItemData() {
                   </div>
                 </a>
               </div>`;
-    //卡片下塊高度: 126px  //270:316 = 8.5:10
-    // onerror='imageError(event)'
   });
   itemInfo_section.innerHTML = str;
 }
@@ -127,7 +99,6 @@ function renderMap() {
   ).addTo(map);
 
   // 渲染所有Icon
-
   data.forEach((item, i) => {
     var myIcon = L.divIcon({
       html: `<div class='iconNum' data-id ='${item.RestaurantID}'>${
@@ -138,38 +109,8 @@ function renderMap() {
 
     let lat = item.Position.PositionLat;
     let lon = item.Position.PositionLon;
-    L.marker([lat, lon], { icon: myIcon })
-      // .bindPopup(
-      //   `<div class="sceneSpotCard" >
-      //             <a href="scenicSpotInfo.html?id=${item.ScenicSpotID}">
-      //               <div class="img_div">
-      //                 <img class="sceneImg" src="${item.Picture.PictureUrl1}" alt="${item.ScenicSpotName}"/>
-      //               </div>
-      //               <div class="sceneSpotCard_body">
-      //                 <h5 class="sceneName">${item.ScenicSpotName}</h5>
-      //               </div>
-      //             </a>
-      //           </div>`
-      // )
-      .openPopup()
-      .addTo(map);
+    L.marker([lat, lon], { icon: myIcon }).openPopup().addTo(map);
   });
-
-  // var myIcon = new L.Icon({
-  //   iconUrl:
-  //     "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png",
-  //   shadowUrl:
-  //     "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
-  //   iconSize: [25, 41],
-  //   iconAnchor: [12, 41],
-  //   popupAnchor: [1, -34],
-  //   shadowSize: [41, 41],
-  // });
-
-  //客製化Icon
-  // var myIcon = L.divIcon({ className: "myIcon" });
-
-  // L.marker([23.23451042175293, 120.0962905883789], { icon: myIcon }).addTo(map);
 }
 
 dropdownCity.addEventListener("change", (e) => {
@@ -208,11 +149,6 @@ function bindMarkers() {
       });
     });
   });
-
-  //抓右邊Data的數字
-  // itemInfo_section.querySelectorAll(".sceneSpotCard").forEach((item) => {
-  //   console.log(item.querySelector(".numIcon p"));
-  // });
 }
 
 //驗證用

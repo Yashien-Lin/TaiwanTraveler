@@ -71,10 +71,6 @@
   box-shadow: 0 0 0.1rem 0.35rem rgb(108 93 250 / 50%);
 }
 
-/* .sceneSpotCard:focus {
-  box-shadow: 0 0 0 0.35rem rgb(108 93 250 / 50%);
-} */
-
 .sceneSpotCard:hover .sceneName {
   color: #ffffff;
 }
@@ -103,8 +99,6 @@
   }
 }
 
-/* Demonstrate a "mostly customized" scrollbar
-   * (won't be visible otherwise if width/height is specified) */
 .itemInfo_section::-webkit-scrollbar {
   width: 5px;
   height: 8px;
@@ -191,12 +185,6 @@
   background-color: #9086cc;
   color: #ffffff;
 }
-
-/* .dropdownCity option:hover {
-  cursor: pointer;
-  background-color: #9086cc !important;
-  color: #ffffff;
-} */
 
 option:hover {
   background-color: yellow;

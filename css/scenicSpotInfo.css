@@ -25,6 +25,10 @@
   color: #fa7e5f;
 }
 
+.sceneSpotPic:hover .sceneCity {
+  color: #2586eb;
+}
+
 .sceneTags {
   display: flex;
   align-content: center;
@@ -117,15 +121,6 @@
 
 .leaflet-container .leaflet-marker-pane img {
   z-index: 999 !important;
-}
-
-.sceneSpotPic_body {
-  display: flex;
-  flex-direction: column;
-  gap: 9px;
-  height: calc(100% - 132px);
-  padding: 14px 20px;
-  justify-content: center;
 }
 
 .sceneSpotPic .sceneImg {

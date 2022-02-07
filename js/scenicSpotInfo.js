@@ -17,7 +17,7 @@ function getSceneData() {
     )
     .then((res) => {
       sceneData = res.data[0];
-      // console.log(sceneData); //單一景點資料
+      console.log(res); //單一景點資料
       let str = "";
 
       // 處理風景類別標籤字串
@@ -95,7 +95,7 @@ function getSceneData() {
 
                 <div class="container-footer">
                   <h2 class="topicTitle">附近景點</h2>
-                  <div class="sceneSpotPic_section">
+                  <div class="sceneSpotPic_section nearbySceneSpot">
 
                   </div>
                   <div class="subscribeBox">
@@ -153,7 +153,7 @@ function getNearBySceneSpot(userNowlat, userNowlon) {
     .catch((err) => console.log(err));
 }
 
-// 載入地圖 (先關掉)
+// 載入地圖 (先關掉) note: (userNowlat, userNowlon) user位置待放
 function renderMap(lat, lon, userNowlat, userNowlon) {
   // 初始化地圖
   if (map != undefined) {
@@ -186,13 +186,19 @@ function renderMap(lat, lon, userNowlat, userNowlon) {
     shadowSize: [41, 41],
   });
 
+  let imgUrl;
+  if (sceneData.Picture.PictureUrl1 == undefined) {
+    imgUrl = "image/landscape.jpg";
+  } else {
+    imgUrl = sceneData.Picture.PictureUrl1;
+  }
   L.marker([lat, lon], { icon: redIcon })
     .addTo(map)
     .bindPopup(
       `<div class="sceneSpotPic" >
                   <a href="#">
                     <div class="img_div">
-                      <img class="sceneImg" src="${sceneData.Picture.PictureUrl1}" alt="${sceneData.ScenicSpotName}"/>
+                      <img class="sceneImg" src="${imgUrl}" alt="" onerror='imageError(event)'/> 
                     </div>
                     <div class="sceneSpotPic_body">
                       <h5 class="sceneName">${sceneData.ScenicSpotName}</h5>
@@ -216,13 +222,21 @@ function renderMap(lat, lon, userNowlat, userNowlon) {
       popupAnchor: [13, -10],
     });
 
+    let imgUrl;
+    if (item.Picture.PictureUrl1 == undefined) {
+      imgUrl = "image/landscape.jpg";
+    } else {
+      imgUrl = item.Picture.PictureUrl1;
+    }
+
     L.marker([lat, lon], { icon: myIcon })
       .addTo(map)
       .bindPopup(
         `<div class="sceneSpotPic" >
                   <a href="scenicSpotInfo.html?id=${item.ScenicSpotID}&city=${ScenicSpotCity}">
                     <div class="img_div">
-                      <img class="sceneImg" src="${item.Picture.PictureUrl1}" alt="${item.ScenicSpotName}"/>
+                      <img class="sceneImg" src="${imgUrl}" alt="" onerror='imageError(event)'/> 
+                      
                     </div>
                     <div class="sceneSpotPic_body">
                       <h5 class="sceneName">${item.ScenicSpotName}</h5>
@@ -240,16 +254,17 @@ function renderNearBySceneSpot() {
   const sceneSpotPic_section = document.querySelector(".sceneSpotPic_section");
   let str = "";
   nearbySceneData.splice(0, 4).forEach((item) => {
+    let imgUrl;
+    if (item.Picture.PictureUrl1 == undefined) {
+      imgUrl = "image/landscape.jpg";
+    } else {
+      imgUrl = item.Picture.PictureUrl1;
+    }
     str += `
                  <div class="sceneSpotPic">
                   <a href="scenicSpotInfo.html?id=${item.ScenicSpotID}&city=${ScenicSpotCity}">
                     <div class="img_div">
-                      <img
-                        class="sceneImg"
-                        src="${item.Picture.PictureUrl1}"
-                        alt="${item.Picture.PictureDescription1}"
-                        onerror="imageError(event)"
-                      />
+                    <img class="sceneImg" src="${imgUrl}" alt="${item.Picture.PictureDescription1}" onerror='imageError(event)'/> 
                     </div>
                     <div class="sceneSpotPic_body">
                       <h5 class="sceneName">${item.ScenicSpotName}</h5>
