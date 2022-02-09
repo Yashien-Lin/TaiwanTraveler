@@ -20,19 +20,22 @@ let data;
 function getItemData(city) {
   axios
     .get(
-      `https://ptx.transportdata.tw/MOTC/v2/Tourism/Restaurant/${selectedCity}?%24top=100&format=JSON`,
+      `https://ptx.transportdata.tw/MOTC/v2/Tourism/Restaurant/${selectedCity}?%24top=60&format=JSON`,
 
       { header: GetAuthorizationHeader() }
     )
     .then((res) => {
       data = res.data;
-      console.log(data);
       renderItemData();
-      // getNearBySceneSpot();
       renderMap();
       bindMarkers();
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      console.log(err.response);
+      if (err.response.status == 429) {
+        alert(`${err.response.data.message}! \nPlease try again tomorrow. ☺`);
+      }
+    });
 }
 
 // 渲染資料
@@ -42,7 +45,6 @@ function renderItemData() {
     let imgUrl;
     if (item.Picture.PictureUrl1 == undefined) {
       imgUrl = "image/food_notFound2.jpg";
-      // return;
     } else {
       imgUrl = item.Picture.PictureUrl1;
     }
@@ -82,7 +84,6 @@ function renderMap() {
   const lat = location.split(",")[0];
   const lon = location.split(",")[1];
   map = L.map("map").setView([lat, lon], 11); //第一筆做中心點
-  // L.marker([lat, lon]).addTo(map);   //第一筆的marker
 
   L.tileLayer(
     "https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}",
@@ -115,7 +116,6 @@ function renderMap() {
 
 dropdownCity.addEventListener("change", (e) => {
   selectedCity = e.target.value;
-  console.log(selectedCity);
   getItemData();
   location.href = `restaurants.html?id=${selectedCity}`;
 });
@@ -127,7 +127,6 @@ function bindMarkers() {
 
   let selectedMarker;
   sceneSpotCards.forEach((item) => {
-    // console.log(item);
     item.addEventListener("mouseover", (e) => {
       const location = item.dataset.loc;
       const lat = location.split(",")[0];
@@ -135,12 +134,9 @@ function bindMarkers() {
       map.setView([lat, lon], 13); //調整中心點
 
       selectedMarker = item.getAttribute("data-id");
-      // console.log(item);
-      // console.log(selectedMarker);
 
       iconNums.forEach((item) => {
         if (item.dataset.id == selectedMarker) {
-          // console.log(item);
           item.closest(".myIcon").classList.add("iconHover");
           item.closest(".myIcon").style.zIndex = "999";
         } else {

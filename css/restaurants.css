@@ -6,7 +6,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 25px 0;
+  margin: 22px 0;
 }
 
 .container-body {
@@ -221,4 +221,15 @@ option:hover {
   justify-content: center;
   align-items: center;
   width: 100%;
+}
+
+.remarks {
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 5px;
+  margin-bottom: 10px;
+  font-size: 13px;
 }

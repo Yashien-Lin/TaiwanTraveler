@@ -44,14 +44,14 @@ function getSpotList() {
     })
       .then((res) => {
         let data = res.data;
-        console.log(data);
         data.forEach((spot) => {
           let obj = {};
-
           if (
-            spot.ScenicSpotName == "屏東縣排灣族雕刻館" || //C1-00102.jpg
+            spot.ScenicSpotName == "屏東縣排灣族雕刻館" ||
             spot.ScenicSpotName == "中山公園" ||
             spot.Picture.PictureUrl1 == undefined ||
+            (spot.Picture.PictureUrl1 != undefined &&
+              spot.Picture.PictureUrl1.indexOf("ptngis") !== -1) ||
             spot.City == undefined
           ) {
             return;
@@ -61,7 +61,7 @@ function getSpotList() {
             obj.id = spot.ScenicSpotID;
             obj.position = spot.Position;
             obj.ScenicSpotName = spot.ScenicSpotName;
-            obj.picUrl = spot.Picture.PictureUrl1; //到這裡
+            obj.picUrl = spot.Picture.PictureUrl1;
           }
           topicListAll.push(obj);
         });
@@ -69,7 +69,10 @@ function getSpotList() {
         renderSpotList();
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err.response);
+        if (err.response.status == 429) {
+          alert(`${err.response.data.message}! \nPlease try again tomorrow. ☺`);
+        }
       });
   });
 }
@@ -82,7 +85,6 @@ function renderSpotList() {
   let city;
   topicListAll.forEach((item) => {
     if (item.picUrl != undefined && item.city != city) {
-      console.log(item);
       let str = `<div class="sceneSpotPic" >
                   <a href="scenicSpotInfo.html?id=${item.id}&city=${item.EngCity}">
                     <div class="img_div">
@@ -115,7 +117,7 @@ function imageError(e) {
   }
 }
 
-// 滑動效果slick(): 熱門景點
+// 滑動效果slick(): 熱門景點 & 人氣美食
 function slick() {
   $(document).ready(function () {
     $(".sceneSpotPic_section").slick({
@@ -154,17 +156,17 @@ function slick() {
             dots: false,
           },
         },
-        // You can unslick at a given breakpoint now by adding:
-        // settings: "unslick"
-        // instead of a settings object
       ],
     });
   });
 
-  $(".sceneSpotPic_section")[0].slick.refresh();
+  if ($(".sceneSpotPic_section")[0] != undefined) {
+    $(".sceneSpotPic_section")[0].slick.refresh();
+  }
 
   $(document).ready(function () {
     $(".popFoodPic_section").slick({
+      arrows: true,
       infinite: false,
       speed: 300,
       slidesToShow: 4,
@@ -198,14 +200,13 @@ function slick() {
             dots: false,
           },
         },
-        // You can unslick at a given breakpoint now by adding:
-        // settings: "unslick"
-        // instead of a settings object
       ],
     });
   });
 
-  $(".popFoodPic_section")[0].slick.refresh();
+  if ($(".popFoodPic_section")[0] != undefined) {
+    $(".popFoodPic_section")[0].slick.refresh();
+  }
 }
 
 let foodListAll = [];
@@ -220,20 +221,25 @@ function getFoodList() {
     })
       .then((res) => {
         let data = res.data;
-        console.log(data);
         data.forEach((food) => {
           let obj = {};
-          //每個city的每個景點Data
-          obj.city = food.City;
-          obj.EngCity = city;
-          obj.id = food.RestaurantID;
-          obj.RestaurantName = food.RestaurantName;
-          obj.picUrl = food.Picture.PictureUrl1; //到這裡
+
+          if (
+            food.Picture.PictureUrl1 != undefined &&
+            food.Picture.PictureUrl1.indexOf("ptngis") !== -1
+          ) {
+            return;
+          } else {
+            obj.city = food.City;
+            obj.EngCity = city;
+            obj.id = food.RestaurantID;
+            obj.RestaurantName = food.RestaurantName;
+            obj.picUrl = food.Picture.PictureUrl1;
+          }
 
           foodListAll.push(obj);
         });
 
-        console.log(foodListAll);
         renderFoodList();
       })
       .catch((err) => {
@@ -256,7 +262,6 @@ function renderFoodList() {
                   <img src="${item.picUrl}" alt="${item.RestaurantName}" onerror='imageError(event)'/>
                   
                 </div>`;
-      // console.log(str);
 
       newStr += str;
       city = item.city;

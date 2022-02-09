@@ -59,13 +59,18 @@
 .sceneDetails {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 27px;
 }
 
 .sceneDetails li:first-child {
   display: flex;
   align-items: flex-start;
   line-height: 26px;
+}
+
+.sceneDetails li {
+  display: flex;
+  align-items: center;
 }
 
 .sceneDetails img {

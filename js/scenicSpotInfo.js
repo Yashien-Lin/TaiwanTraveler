@@ -8,16 +8,17 @@ function init() {
 }
 
 init();
+
+//單一景點資料
 let sceneData;
 function getSceneData() {
   axios
     .get(
-      `https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot/${ScenicSpotCity}?%24filter=contains(ScenicSpotID%2C%20'${ScenicSpotID}')&%24top=10&%24format=JSON`,
+      `https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot/${ScenicSpotCity}?%24filter=contains(ScenicSpotID%2C%20'${ScenicSpotID}')&%24top=60&%24format=JSON`,
       { header: GetAuthorizationHeader() }
     )
     .then((res) => {
       sceneData = res.data[0];
-      console.log(res); //單一景點資料
       let str = "";
 
       // 處理風景類別標籤字串
@@ -69,16 +70,16 @@ function getSceneData() {
                         <h2 class="sceneTitle">${sceneData.ScenicSpotName}</h2>
                         <ul class="sceneDetails">
                         <li>
-                            <img src="image/clock.svg" alt="" />
+                            <img src="image/clock.svg" alt="clock icon" />
                             <span>${sceneData.OpenTime}</span>
                         </li>
                         <li>
-                            <img src="image/phone.svg" alt="" />
+                            <img src="image/phone.svg" alt="phone icon" />
                             <span>${sceneData.Phone}</span>
                         </li>
                         <li>
-                            <img src="image/locate.svg" alt="" />
-                            <span>${sceneData.ScenicSpotName}</span>
+                        <img src="image/locate.svg" alt="location icon" />
+                        <span><a href='https://www.google.com/maps/place/${lat}, ${lon}' target='_blank'>${sceneData.Address}</a></span>
                         </li>
                           ${websiteStr}
                         </ul>
@@ -118,7 +119,12 @@ function getSceneData() {
       innerPage.innerHTML = str;
       getLocation();
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      console.log(err.response);
+      if (err.response.status == 429) {
+        alert(`${err.response.data.message}! \nPlease try again tomorrow. ☺`);
+      }
+    });
 }
 
 //取得現在位置
@@ -126,34 +132,35 @@ function getLocation() {
   navigator.geolocation.getCurrentPosition(function (position) {
     let userNowlat = position.coords.latitude;
     let userNowlon = position.coords.longitude;
-    console.log(`your location: ${userNowlat}, ${userNowlon}`);
     getNearBySceneSpot(userNowlat, userNowlon); // 要放單一景點位置
   });
 }
 
-//取得附近景點 (先關掉)
+//取得附近景點
 let nearbySceneData;
 function getNearBySceneSpot(userNowlat, userNowlon) {
   //抓此景點經緯度
-  console.log("sceneData:", sceneData);
   const lat = sceneData.Position.PositionLat;
   const lon = sceneData.Position.PositionLon;
   axios
     .get(
-      // `https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot?%24spatialFilter=nearby(${lat},${lon},1000)&%24format=JSON`,
       `https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot/${ScenicSpotCity}?%24top=30&%24spatialFilter=nearby(${lat},${lon},1000)&%24format=JSON`,
       { header: GetAuthorizationHeader() }
     )
     .then((res) => {
       nearbySceneData = res.data;
-      // console.log("nearbySceneData:", nearbySceneData);
       renderMap(lat, lon, userNowlat, userNowlon); //此景點位置 & user位置
       renderNearBySceneSpot();
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      console.log(err.response);
+      if (err.response.status == 429) {
+        alert(`${err.response.data.message}! \nPlease try again tomorrow. ☺`);
+      }
+    });
 }
 
-// 載入地圖 (先關掉) note: (userNowlat, userNowlon) user位置待放
+// 載入地圖 note: (userNowlat, userNowlon) user位置待放
 function renderMap(lat, lon, userNowlat, userNowlon) {
   // 初始化地圖
   if (map != undefined) {
@@ -249,8 +256,6 @@ function renderMap(lat, lon, userNowlat, userNowlon) {
 
 // render附近景點卡
 function renderNearBySceneSpot() {
-  console.log("nearbySceneData:", nearbySceneData);
-  console.log(ScenicSpotCity);
   const sceneSpotPic_section = document.querySelector(".sceneSpotPic_section");
   let str = "";
   nearbySceneData.splice(0, 4).forEach((item) => {
